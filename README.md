@@ -1,2 +1,3 @@
-# algo
+### algo
+
 algorithm problem solving repository
