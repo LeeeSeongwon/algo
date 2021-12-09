@@ -7,10 +7,9 @@ def main(n):
     _range = int(n[0])
     cnt = int(n[1])
     for i in permutations(range(1, _range + 1), cnt):
-        tmp = ""
         for j in i:
-            tmp += str(j) + " "
-        print(tmp)
+            print(j, end=" ")
+        print("")
 
 
 if __name__ == "__main__":
