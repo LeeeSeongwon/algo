@@ -1,31 +1,25 @@
-def nqueen(n):
-    global count
-    if n == N:
-        count += 1
-        return
+def is_promising(x):
+    for i in range(x):
+        if row[x] == row[i] or abs(row[x] - row[i]) == abs(x - i):
+            return False
+    return True
 
-    if n != 0:
-        for i in range(N):
-            if not (a[i] or b[n + i] or c[n - i + N - 1]):
-                a[i] = b[n + i] = c[n - i + N - 1] = True
-                nqueen(n + 1)
-                a[i] = b[n + i] = c[n - i + N - 1] = False
+
+def n_queens(x):
+    global ans
+    if x == n:
+        ans += 1
+
     else:
-        for i in range(N // 2):
-            if not (a[i] or b[n + i] or c[n - i + N - 1]):
-                a[i] = b[n + i] = c[n - i + N - 1] = True
-                nqueen(n + 1)
-                a[i] = b[n + i] = c[n - i + N - 1] = False
-        count *= 2
-        if N % 2 == 1:
-            a[(N // 2)] = b[(N // 2)] = c[-(N // 2) + N - 1] = True
-            nqueen(n + 1)
-            a[(N // 2)] = b[(N // 2)] = c[-(N // 2) + N - 1] = False
+        for i in range(n):
+            row[x] = i
+            if is_promising(x):
+                n_queens(x + 1)
 
 
 if __name__ == "__main__":
-    N = int(input())
-    a, b, c = [False] * N, [False] * (2 * N - 1), [False] * (2 * N - 1)
-    count = 0
-    nqueen(0)
-    print(count)
+    n = int(input())
+    ans = 0
+    row = [0] * n
+    n_queens(0)
+    print(ans)
